@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { Provider } from 'react-redux';
+
+import { ChakraProvider, theme } from '@chakra-ui/react';
+import { Routes, Route } from 'react-router-dom';
+import { SearchPage } from "./Pages/search Page/searchPage"
+import LandingPage from "./Pages/landingPage/Landingpage"
+import { store } from './Redux/store';
+import Footer from "./componentsSandeep/Footer"
+import JobDescription from './Pages/search Page/jobDescription';
+import { UpdateProfilePage } from "./Pages/UpdateProfilePage"
+import { UserHomePage } from "./Pages/UserHomePage"
+import { Navbar1 } from "./Navbar1"
+
+
+
+import SavedJob from './Pages/search Page/savedJobs';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ChakraProvider theme={theme}>
+      <Provider store={store}>
+        <Navbar1 />
+        <Routes>
+          <Route path="/" element={<LandingPage />}></Route>
+          <Route path="/UserHomePage" element={<UserHomePage />}></Route>
+          <Route path="/UpdateProfilePage" element={<UpdateProfilePage />}></Route>
+          <Route path="/savedJob" element={<SavedJob />}></Route>
+          <Route path="/SearchPage" element={<SearchPage />}></Route>
+          <Route path="/jobDescription/:id" element={<JobDescription />}></Route>
+        </Routes>
+        <Footer />
+
+
+      </Provider>
+
+    </ChakraProvider>
+  );
 }
 
-export default App
+export default App;
