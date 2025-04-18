@@ -62,5 +62,6 @@
   "main": "App.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "postcss-dir-pseudo-className": "6.0.5"
 }
